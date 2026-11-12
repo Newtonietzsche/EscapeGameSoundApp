@@ -4,13 +4,19 @@
 audioPuzzleWindow::audioPuzzleWindow(QWidget *parent)
     : QDialog(parent), ui(new Ui::audioPuzzleWindow) {
   ui->setupUi(this);
+    soundNames={
+      "Sonnette",
+      "RoueLibre",
+      "Chaine",
+      "Frein"
+  };
   soundList = {
       QUrl("qrc:/Sons/Ressources/Sonnette.mp3"),
       QUrl("qrc:/Sons/Ressources/RoueLibre.mp3"),
       QUrl("qrc:/Sons/Ressources/Chaine.mp3"),
       QUrl("qrc:/Sons/Ressources/Frein.mp3"),
-
   };
+    listRandomizer();
   player.setAudioOutput(&audioOutput);
   audioOutput.setVolume(0.5);
   connect(ui->pushButton, SIGNAL(clicked(bool)), this,
@@ -20,15 +26,16 @@ audioPuzzleWindow::audioPuzzleWindow(QWidget *parent)
           &audioPuzzleWindow::followSequence);
 
   QList<QComboBox *> list = ui->widget->findChildren<QComboBox *>();
-  qDebug() << "nombre d'objet liste " << list.size();
+
 
   foreach (auto obj, list) {
-    obj->addItem("my test");
-    obj->addItem("Sonnette");
-    obj->addItem("Frein");
+      foreach (QString q, soundNames)
+      {
+          obj->addItem(q);
+      }
   }
 
-  qDebug() << "test" << ui->comboBox->currentText();
+
 }
 
 audioPuzzleWindow::~audioPuzzleWindow() { delete ui; }
@@ -39,6 +46,7 @@ void audioPuzzleWindow::on_pushButton_clicked() {
   }
   player.setSource(soundList[sequence]);
   player.play();
+  ui->progressBar->setValue(qfloat16(sequence+1)/qfloat16(soundList.size())*100 );
 }
 
 void audioPuzzleWindow::followSequence() {
@@ -54,6 +62,8 @@ void audioPuzzleWindow::playNextSound() {
   }
   player.setSource(soundList[sequence]);
   player.play();
+  ui->progressBar->setValue(qfloat16(sequence+1)/qfloat16(soundList.size())*100 );
+
 }
 
 void audioPuzzleWindow::on_pushButton_2_clicked() {
@@ -92,4 +102,13 @@ void audioPuzzleWindow::openNewWindow() {
     ui->label_3->setText("Mauvais code réessayez");
     ui->label_3->setStyleSheet("QLabel {  color : red; }");
   }
+}
+
+void audioPuzzleWindow::listRandomizer()
+{
+    for (int i=0;i< this->soundNumber;i++)
+    {
+        RandomizedSoundList.append(QRandomGenerator::global()->bounded(this->soundList.size()));
+    }
+
 }

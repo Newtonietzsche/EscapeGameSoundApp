@@ -12,6 +12,7 @@
 #include <QVector>
 #include <unistd.h>
 #include <QDir>
+#include <QComboBox>
 
 QT_BEGIN_NAMESPACE
 namespace Ui {

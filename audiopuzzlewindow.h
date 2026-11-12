@@ -9,6 +9,7 @@
 #include <QMediaPlayer>
 #include <QUrl>
 #include <QVector>
+#include <QRandomGenerator>
 
 namespace Ui {
 class audioPuzzleWindow;
@@ -23,6 +24,7 @@ public:
 
 public:
   void playNextSound();
+    void listRandomizer();
 public slots:
   void on_pushButton_clicked();
   void followSequence();
@@ -37,10 +39,13 @@ public slots:
 private:
   Ui::audioPuzzleWindow *ui;
   int sequence = 0;
+  int soundNumber=5;
   QMediaPlayer player;
   QAudioOutput audioOutput;
   QVector<QUrl> soundList;
+  QVector<int> RandomizedSoundList;
   QVector<QString> soundNames;
+
   QWidget *wdg = new HintWindows;
 };
 

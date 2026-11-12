@@ -144,6 +144,12 @@
          <item>
           <widget class="QComboBox" name="comboBox_2"/>
          </item>
+         <item>
+          <widget class="QComboBox" name="comboBox_3"/>
+         </item>
+         <item>
+          <widget class="QComboBox" name="comboBox_4"/>
+         </item>
         </layout>
        </item>
       </layout>
