@@ -46,9 +46,23 @@ audioPuzzleWindow::audioPuzzleWindow(QWidget *parent)
 audioPuzzleWindow::~audioPuzzleWindow() { delete ui; }
 
 void audioPuzzleWindow::on_pushButton_clicked() {
+    if (runSequence)
+    {
+        qDebug()<<"stop sequence";
+        player.stop();
+           // sequence = RandomizedSoundList.size()+1;
+        sequence=0;
+        runSequence=0;
+        ui->progressBar->setValue(0);
+        return;
+
+
+
+    }
   if (sequence >= soundList.size()) {
     sequence = 0;
   }
+  runSequence=1;
   player.setSource(soundList[RandomizedSoundList[sequence]]);
    ui->progressBar->setValue(qfloat16(sequence+1)/qfloat16(RandomizedSoundList.size())*100 );
   player.play();
@@ -56,7 +70,7 @@ void audioPuzzleWindow::on_pushButton_clicked() {
 }
 
 void audioPuzzleWindow::followSequence() {
-  if (player.mediaStatus() == QMediaPlayer::EndOfMedia) {
+  if (player.mediaStatus() == QMediaPlayer::EndOfMedia && runSequence) {
     playNextSound();
   }
 }
@@ -64,6 +78,10 @@ void audioPuzzleWindow::followSequence() {
 void audioPuzzleWindow::playNextSound() {
   sequence += 1;
   if (sequence >= RandomizedSoundList.size()) {
+      qDebug()<<"seqence stopped";
+      runSequence=0;
+      sequence=0;
+      ui->progressBar->setValue(0);
     return;
   }
   player.setSource(soundList[RandomizedSoundList[sequence]]);
@@ -74,25 +92,40 @@ void audioPuzzleWindow::playNextSound() {
 }
 
 void audioPuzzleWindow::on_pushButton_2_clicked() {
+    if (!runSequence)
+    {
   player.setSource(soundList[0]);
   player.play();
+    }
 }
 void audioPuzzleWindow::on_pushButton_3_clicked() {
-  player.setSource(soundList[1]);
-  player.play();
+    if (!runSequence)
+    {
+        player.setSource(soundList[1]);
+        player.play();
+    }
 }
 void audioPuzzleWindow::on_pushButton_4_clicked() {
-  player.setSource(soundList[2]);
-  player.play();
+    if (!runSequence)
+    {
+        player.setSource(soundList[2]);
+        player.play();
+    }
 }
 void audioPuzzleWindow::on_pushButton_5_clicked() {
-  player.setSource(soundList[3]);
-  player.play();
+    if (!runSequence)
+    {
+        player.setSource(soundList[3]);
+        player.play();
+    }
 }
 void audioPuzzleWindow::on_pushButton_6_clicked() {
   return;
-  player.setSource(soundList[4]);
-  player.play();
+    if (!runSequence)
+    {
+        player.setSource(soundList[4]);
+        player.play();
+    }
 }
 
 void audioPuzzleWindow::openNewWindow() {
@@ -115,10 +148,7 @@ void audioPuzzleWindow::listRandomizer()
     for (int i=0;i<this->soundNumber;i++)
     {
         RandomizedSoundList.append(QRandomGenerator::global()->bounded(this->soundList.size()));
-
     }
-
-
 }
 
 bool audioPuzzleWindow::isComboValid()

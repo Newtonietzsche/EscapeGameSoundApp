@@ -67,7 +67,7 @@
          <item>
           <widget class="QPushButton" name="pushButton_4">
            <property name="text">
-            <string>grincement roue</string>
+            <string>Chaine</string>
            </property>
           </widget>
          </item>
@@ -81,7 +81,7 @@
          <item>
           <widget class="QPushButton" name="pushButton_6">
            <property name="text">
-            <string>valve </string>
+            <string>autre</string>
            </property>
           </widget>
          </item>
@@ -137,6 +137,16 @@
      <widget class="QWidget" name="widget" native="true">
       <layout class="QVBoxLayout" name="verticalLayout_6">
        <item>
+        <widget class="QLabel" name="label_2">
+         <property name="text">
+          <string>Retrouver les sons</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignmentFlag::AlignCenter</set>
+         </property>
+        </widget>
+       </item>
+       <item>
         <layout class="QHBoxLayout" name="horizontalLayout_2"/>
        </item>
       </layout>
@@ -144,16 +154,6 @@
     </item>
     <item>
      <layout class="QVBoxLayout" name="verticalLayout_5">
-      <item>
-       <widget class="QLabel" name="label_2">
-        <property name="text">
-         <string>Retrouver les sons</string>
-        </property>
-        <property name="alignment">
-         <set>Qt::AlignmentFlag::AlignCenter</set>
-        </property>
-       </widget>
-      </item>
       <item>
        <widget class="QPushButton" name="pushButton_7">
         <property name="text">

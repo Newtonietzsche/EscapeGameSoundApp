@@ -5,9 +5,8 @@ MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent), ui(new Ui::MainWindow) {
   _smallCounter = 0.0f;
   ui->setupUi(this);
-
   connect(ui->pushButton, SIGNAL(clicked(bool)), this, SLOT(openNewWindow()));
-
+ wdg->show();
 
 }
 

@@ -42,7 +42,8 @@ public slots:
 private:
   Ui::audioPuzzleWindow *ui;
   int sequence = 0;
-  int soundNumber=5;
+  int runSequence = 0;
+  int soundNumber=8;
   QMediaPlayer player;
   QAudioOutput audioOutput;
   QVector<QUrl> soundList;
