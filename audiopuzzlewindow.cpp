@@ -18,9 +18,6 @@ audioPuzzleWindow::audioPuzzleWindow(QWidget *parent)
       QUrl("qrc:/Sons/Ressources/Frein.mp3"),
   };
 
-
-
-
     for (int k=0;k<soundNumber;k++)
   {
         QComboBox * combo = new QComboBox;
@@ -52,9 +49,10 @@ void audioPuzzleWindow::on_pushButton_clicked() {
   if (sequence >= soundList.size()) {
     sequence = 0;
   }
-  player.setSource(soundList[sequence]);
+  player.setSource(soundList[RandomizedSoundList[sequence]]);
+   ui->progressBar->setValue(qfloat16(sequence+1)/qfloat16(RandomizedSoundList.size())*100 );
   player.play();
-  ui->progressBar->setValue(qfloat16(sequence+1)/qfloat16(soundList.size())*100 );
+
 }
 
 void audioPuzzleWindow::followSequence() {
@@ -65,12 +63,13 @@ void audioPuzzleWindow::followSequence() {
 
 void audioPuzzleWindow::playNextSound() {
   sequence += 1;
-  if (sequence >= soundList.size()) {
+  if (sequence >= RandomizedSoundList.size()) {
     return;
   }
-  player.setSource(soundList[sequence]);
+  player.setSource(soundList[RandomizedSoundList[sequence]]);
+    ui->progressBar->setValue(qfloat16(sequence+1)/qfloat16(RandomizedSoundList.size())*100 );
   player.play();
-  ui->progressBar->setValue(qfloat16(sequence+1)/qfloat16(soundList.size())*100 );
+
 
 }
 
@@ -100,8 +99,7 @@ void audioPuzzleWindow::openNewWindow() {
 
   QList temp = ui->horizontalLayout->children();
 
-/*  if (ui->comboBox->currentText() == "Sonnette" &&
-      ui->comboBox_2->currentText() == "Frein")*/ if(0){
+  if(isComboValid()){
     ui->label_3->setText("Code bon");
     ui->label_3->setStyleSheet("QLabel {  color : green; }");
     wdg->show();
@@ -117,15 +115,21 @@ void audioPuzzleWindow::listRandomizer()
     for (int i=0;i<this->soundNumber;i++)
     {
         RandomizedSoundList.append(QRandomGenerator::global()->bounded(this->soundList.size()));
+
     }
+
 
 }
 
 bool audioPuzzleWindow::isComboValid()
 {
-    bool valid;
-    foreach(int i,RandomizedSoundList)
+    QList<QComboBox *> list = ui->widget->findChildren<QComboBox *>();
+    for (int i = 0; i < list.size(); ++i)
     {
-
+        if (list[i]->currentIndex()!=RandomizedSoundList[i])
+        {
+            return false;
+        }
     }
+    return true;
 }
