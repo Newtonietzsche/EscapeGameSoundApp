@@ -10,6 +10,8 @@
 #include <QUrl>
 #include <QVector>
 #include <QRandomGenerator>
+#include <QPushButton>
+#include <QComboBox>
 
 namespace Ui {
 class audioPuzzleWindow;
@@ -25,6 +27,7 @@ public:
 public:
   void playNextSound();
     void listRandomizer();
+  bool isComboValid();
 public slots:
   void on_pushButton_clicked();
   void followSequence();
@@ -45,6 +48,8 @@ private:
   QVector<QUrl> soundList;
   QVector<int> RandomizedSoundList;
   QVector<QString> soundNames;
+  QVector<QComboBox*>  comboBoxList;
+  QVector<QPushButton> * pushButtonList;
 
   QWidget *wdg = new HintWindows;
 };

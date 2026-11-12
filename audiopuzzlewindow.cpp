@@ -4,6 +4,7 @@
 audioPuzzleWindow::audioPuzzleWindow(QWidget *parent)
     : QDialog(parent), ui(new Ui::audioPuzzleWindow) {
   ui->setupUi(this);
+
     soundNames={
       "Sonnette",
       "RoueLibre",
@@ -16,6 +17,21 @@ audioPuzzleWindow::audioPuzzleWindow(QWidget *parent)
       QUrl("qrc:/Sons/Ressources/Chaine.mp3"),
       QUrl("qrc:/Sons/Ressources/Frein.mp3"),
   };
+
+
+
+
+    for (int k=0;k<soundNumber;k++)
+  {
+        QComboBox * combo = new QComboBox;
+        foreach (QString q, soundNames)
+        {
+            combo->addItem(q);
+        }
+      ui->horizontalLayout_2->addWidget(combo);
+
+   }
+
     listRandomizer();
   player.setAudioOutput(&audioOutput);
   audioOutput.setVolume(0.5);
@@ -25,15 +41,7 @@ audioPuzzleWindow::audioPuzzleWindow(QWidget *parent)
   connect(&player, &QMediaPlayer::mediaStatusChanged, this,
           &audioPuzzleWindow::followSequence);
 
-  QList<QComboBox *> list = ui->widget->findChildren<QComboBox *>();
 
-
-  foreach (auto obj, list) {
-      foreach (QString q, soundNames)
-      {
-          obj->addItem(q);
-      }
-  }
 
 
 }
@@ -92,8 +100,8 @@ void audioPuzzleWindow::openNewWindow() {
 
   QList temp = ui->horizontalLayout->children();
 
-  if (ui->comboBox->currentText() == "Sonnette" &&
-      ui->comboBox_2->currentText() == "Frein") {
+/*  if (ui->comboBox->currentText() == "Sonnette" &&
+      ui->comboBox_2->currentText() == "Frein")*/ if(0){
     ui->label_3->setText("Code bon");
     ui->label_3->setStyleSheet("QLabel {  color : green; }");
     wdg->show();
@@ -106,9 +114,18 @@ void audioPuzzleWindow::openNewWindow() {
 
 void audioPuzzleWindow::listRandomizer()
 {
-    for (int i=0;i< this->soundNumber;i++)
+    for (int i=0;i<this->soundNumber;i++)
     {
         RandomizedSoundList.append(QRandomGenerator::global()->bounded(this->soundList.size()));
     }
 
+}
+
+bool audioPuzzleWindow::isComboValid()
+{
+    bool valid;
+    foreach(int i,RandomizedSoundList)
+    {
+
+    }
 }

@@ -18,7 +18,7 @@
     <rect>
      <x>9</x>
      <y>9</y>
-     <width>502</width>
+     <width>921</width>
      <height>342</height>
     </rect>
    </property>
@@ -137,20 +137,7 @@
      <widget class="QWidget" name="widget" native="true">
       <layout class="QVBoxLayout" name="verticalLayout_6">
        <item>
-        <layout class="QHBoxLayout" name="horizontalLayout_2">
-         <item>
-          <widget class="QComboBox" name="comboBox"/>
-         </item>
-         <item>
-          <widget class="QComboBox" name="comboBox_2"/>
-         </item>
-         <item>
-          <widget class="QComboBox" name="comboBox_3"/>
-         </item>
-         <item>
-          <widget class="QComboBox" name="comboBox_4"/>
-         </item>
-        </layout>
+        <layout class="QHBoxLayout" name="horizontalLayout_2"/>
        </item>
       </layout>
      </widget>

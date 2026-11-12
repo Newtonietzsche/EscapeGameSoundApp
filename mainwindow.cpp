@@ -8,10 +8,12 @@ MainWindow::MainWindow(QWidget *parent)
 
   connect(ui->pushButton, SIGNAL(clicked(bool)), this, SLOT(openNewWindow()));
   QComboBox * ComboTest= new QComboBox();
-  ui->horizontalLayout->addWidget(ComboTest);
+  QComboBox * ComboT= new QComboBox();
+   QComboBox * Combo= new QComboBox();
+  ui->horizontalLayout_2->addWidget(ComboTest);
+  ui->horizontalLayout_2->addWidget(ComboT);
+    ui->horizontalLayout_2->addWidget(Combo);
 
-  ui->horizontalLayout->addStretch();
-  ui->widget->resize(ui->widget->width(),ui->widget->height());
 }
 
 void MainWindow::openNewWindow() {
