@@ -1,0 +1,8 @@
+<RCC>
+    <qresource prefix="/Sons">
+        <file>Ressources/Chaine.mp3</file>
+        <file>Ressources/Frein.mp3</file>
+        <file>Ressources/Sonnette.mp3</file>
+        <file>Ressources/RoueLibre.mp3</file>
+    </qresource>
+</RCC>
