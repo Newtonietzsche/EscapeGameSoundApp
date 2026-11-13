@@ -3,6 +3,8 @@
 
 #include "audiopuzzlewindow.h"
 #include <QAudioOutput>
+#include <QComboBox>
+#include <QDir>
 #include <QFile>
 #include <QFileInfo>
 #include <QListWidget>
@@ -11,8 +13,6 @@
 #include <QUrl>
 #include <QVector>
 #include <unistd.h>
-#include <QDir>
-#include <QComboBox>
 
 QT_BEGIN_NAMESPACE
 namespace Ui {
@@ -32,7 +32,7 @@ public:
   void playNextSound();
 public slots:
   void whenButtonIsClicked();
-  void on_pushButton_2_clicked();
+  bool isCodeValid();
   void openNewWindow();
 
 private:
@@ -43,7 +43,8 @@ private:
   QMediaPlayer player;
   QAudioOutput audioOutput;
   QVector<QUrl> soundList;
-  QString motDePasse ="mdp";
+  QString motDePasse = "mdp";
+  QList<int> CodeDePasse = {1, 2, 3, 4};
   QWidget *wdg = new audioPuzzleWindow;
   QString path;
 };

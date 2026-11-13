@@ -7,16 +7,15 @@ namespace Ui {
 class HintWindows;
 }
 
-class HintWindows : public QDialog
-{
-    Q_OBJECT
+class HintWindows : public QDialog {
+  Q_OBJECT
 
 public:
-    explicit HintWindows(QWidget *parent = nullptr);
-    ~HintWindows();
+  explicit HintWindows(QWidget *parent = nullptr);
+  ~HintWindows();
 
 private:
-    Ui::HintWindows *ui;
+  Ui::HintWindows *ui;
 };
 
 #endif // HINTWINDOWS_H

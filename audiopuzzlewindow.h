@@ -3,15 +3,15 @@
 
 #include "hintwindows.h"
 #include <QAudioOutput>
+#include <QComboBox>
 #include <QDialog>
 #include <QListWidget>
 #include <QMainWindow>
 #include <QMediaPlayer>
+#include <QPushButton>
+#include <QRandomGenerator>
 #include <QUrl>
 #include <QVector>
-#include <QRandomGenerator>
-#include <QPushButton>
-#include <QComboBox>
 
 namespace Ui {
 class audioPuzzleWindow;
@@ -26,7 +26,7 @@ public:
 
 public:
   void playNextSound();
-    void listRandomizer();
+  void listRandomizer();
   bool isComboValid();
 public slots:
   void on_pushButton_clicked();
@@ -43,14 +43,14 @@ private:
   Ui::audioPuzzleWindow *ui;
   int sequence = 0;
   int runSequence = 0;
-  int soundNumber=8;
+  int soundNumber = 8;
   QMediaPlayer player;
   QAudioOutput audioOutput;
   QVector<QUrl> soundList;
   QVector<int> RandomizedSoundList;
   QVector<QString> soundNames;
-  QVector<QComboBox*>  comboBoxList;
-  QVector<QPushButton> * pushButtonList;
+  QVector<QComboBox *> comboBoxList;
+  QVector<QPushButton> *pushButtonList;
 
   QWidget *wdg = new HintWindows;
 };
